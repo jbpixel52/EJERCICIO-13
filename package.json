@@ -1,0 +1,14 @@
+{
+  "name": "ejercicio-13",
+  "version": "1.0.0",
+  "description": "EJERCICIO 13 DE GRAFICAS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "JBPIXEL",
+  "license": "ISC",
+  "dependencies": {
+    "three": "^0.128.0"
+  }
+}
