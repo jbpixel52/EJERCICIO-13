@@ -1,6 +1,7 @@
 <html lang="en">
 
 <head>
+    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,18 +9,19 @@
 </head>
 
 <body>
-
+    <h1>EJERCICIO 13</h1>
     <script src="./node_modules/three/build/three.js"></script>
     <div class="slidecontainer">
-        CARAS: 1<input type="range" min="1" max="100" value="50" class="slider" id="myRange">100 <div>
+        CARAS: 1<input type="range" min="1" max="100" value="50" class="slider" id="caras">100 <br>
+        ROTACION X: 1<input type="range" min="1" max="100" value="50" class="slider" id="rotacionx">100 <br>
+        ROTACION Y: 1<input type="range" min="1" max="100" value="50" class="slider" id="rotaciony">100 <br>
+        RADIO (LUZ): 1<input type="range" min="1" max="100" value="50" class="slider" id="radio">100 <br>
 
-            ROTACION X: 1<input type="range" min="1" max="100" value="50" class="slider" id="myRange">100 <div>
-                ROTACION Y: 1<input type="range" min="1" max="100" value="50" class="slider" id="myRange">100 <div>
-                    RADIO (LUZ): 1<input type="range" min="1" max="100" value="50" class="slider" id="myRange">100 <div>
 
-                    </div>
-                    <canvas id="canvas"></canvas>
-
+        <div class="divcanvas"><canvas id="canvas"></canvas>
+        </div>
+        <script src="/script.js"></script>
+        
 </body>
 
 </html>

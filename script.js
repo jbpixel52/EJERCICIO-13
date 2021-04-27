@@ -1,3 +1,4 @@
+
 var canvas = document.getElementById("canvas");
 
 window.onresize = resizeCanvas;
@@ -6,6 +7,8 @@ resizeCanvas();
 var scene = new Scene(canvas);
 
 render();
+
+
 
 function render() {
     requestAnimationFrame(render);
@@ -22,28 +25,35 @@ function resizeCanvas() {
 }
 
 function Scene(canvas) {
-    canvas.width = document.body.clientWidth;
-    canvas.height = document.body.clientHeight;
+    canvas.width = (document.body.clientWidth)*0.75;
+    canvas.height = (document.body.clientHeight)*0.75;
 
     // used to move the light
     var time = 0;
-
+    
     var width = canvas.width;
     var height = canvas.height;
 
     var scene = new THREE.Scene();
-    scene.background = new THREE.Color("#202020");
+    
 
+
+
+    scene.background = new THREE.Texture();
     var light = buildLights(scene);
     var camera = buildCamera(width, height);
     var renderer = buildRender(width, height);
+    renderer.setClearColor();
+
+    //var renderer = new THREE.WebGLRenderer( { alpha: true } ); // init like this
+    renderer.setClearColor( 0xffffff, 1 ); // second param is opacity, 0 => transparent
     var mesh = addObjects(scene);
 
     function buildLights(scene) {
         var light = new THREE.SpotLight("#fff", 5.2);
 
         //CAMBIAR ESTO
-        light.position.y = 100;
+        light.position.y = 50;
 
 
         //cambiar esto
@@ -98,7 +108,11 @@ function Scene(canvas) {
             color: "#000",
             roughness: 1
         });
-
+    function addGif(scene) {
+        var geometry = new THREE.BoxGeometry(canvas.width,canvas.height);
+        var texture
+        
+    }
         // these images are loaded as data uri. Just copy and paste the string contained in "image.src" in your browser's url bar to see the image.
         // environment map used to fake the reflex 
         var image = document.createElement('img');
@@ -123,6 +137,7 @@ function Scene(canvas) {
 
         var mesh = new THREE.Mesh(geometry, material);
         scene.add(mesh);
+        
         return mesh;
     }
 
@@ -142,13 +157,11 @@ function Scene(canvas) {
 
     this.onWindowResize = function () {
         var canvas = document.getElementById("canvas");
-        var width = document.body.clientWidth;
-        var height = document.body.clientHeight;
-        canvas.width = width;
-        canvas.height = height;
+        var width = document.body.clientWidth /2;
+        var height = document.body.clientHeight /2;
 
         camera = buildCamera(width, height);
 
         renderer.setSize(width, height);
-    }
+    };
 }
