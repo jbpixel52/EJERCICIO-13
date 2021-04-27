@@ -1,4 +1,3 @@
-
 var canvas = document.getElementById("canvas");
 
 window.onresize = resizeCanvas;
@@ -9,9 +8,12 @@ var scene = new Scene(canvas);
 render();
 
 
-
 function render() {
+
+
+
     requestAnimationFrame(render);
+
     scene.update();
 }
 
@@ -25,17 +27,17 @@ function resizeCanvas() {
 }
 
 function Scene(canvas) {
-    canvas.width = (document.body.clientWidth)*0.75;
-    canvas.height = (document.body.clientHeight)*0.75;
+    canvas.width = (document.body.clientWidth) * 0.75;
+    canvas.height = (document.body.clientHeight) * 0.75;
 
     // used to move the light
     var time = 0;
-    
+
     var width = canvas.width;
     var height = canvas.height;
 
     var scene = new THREE.Scene();
-    
+
 
 
 
@@ -43,10 +45,9 @@ function Scene(canvas) {
     var light = buildLights(scene);
     var camera = buildCamera(width, height);
     var renderer = buildRender(width, height);
-    renderer.setClearColor();
 
     //var renderer = new THREE.WebGLRenderer( { alpha: true } ); // init like this
-    renderer.setClearColor( 0xffffff, 1 ); // second param is opacity, 0 => transparent
+    renderer.setClearColor(0xffffff, 1); // second param is opacity, 0 => transparent
     var mesh = addObjects(scene);
 
     function buildLights(scene) {
@@ -76,7 +77,7 @@ function Scene(canvas) {
 
     function buildCamera(width, height) {
         var aspectRatio = width / height;
-        var fieldOfView = 60;
+        var fieldOfView = 70;
         var nearPlane = 10;
         var farPlane = 500;
         var camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearPlane, farPlane);
@@ -103,16 +104,12 @@ function Scene(canvas) {
     }
 
     function addObjects(scene) {
-        var geometry = new THREE.SphereGeometry(30, 64, 64);
+        var geometry = new THREE.SphereGeometry(30, 44, 44);
         var material = new THREE.MeshStandardMaterial({
-            color: "#000",
+            color: "#2e1b2a",
             roughness: 1
         });
-    function addGif(scene) {
-        var geometry = new THREE.BoxGeometry(canvas.width,canvas.height);
-        var texture
-        
-    }
+
         // these images are loaded as data uri. Just copy and paste the string contained in "image.src" in your browser's url bar to see the image.
         // environment map used to fake the reflex 
         var image = document.createElement('img');
@@ -136,29 +133,39 @@ function Scene(canvas) {
         material.roughnessMap = roughnessMap;
 
         var mesh = new THREE.Mesh(geometry, material);
+        mesh.needsUpdate = true;
+        mesh.receiveShadow = true;
+
         scene.add(mesh);
-        
+
         return mesh;
     }
 
     this.update = function () {
         time++;
+        
+        light.position.x = Math.sin(time * 0.02) * 200;
+        light.position.y = Math.sin(time * 0.001) * 200;
 
-        // move the light
-        light.position.x = Math.sin(time * 0.01) * 200;
+        document.getElementById("rotacionx").onchange = function () {
+            mesh.rotation.x += parseFloat(event.target.value);
+            requestAnimationFrame(mesh);
+        };
 
-        mesh.rotation.x += 0.001;
-        mesh.rotation.y += 0.001;
-        mesh.rotation.z += 0.001;
+        document.getElementById("rotaciony").onchange = function () {
+            mesh.rotation.y += parseFloat(event.target.value);
+            requestAnimationFrame(mesh);
+        };
 
+        mesh.updateMatrix();
         renderer.clear();
         renderer.render(scene, camera);
     };
 
     this.onWindowResize = function () {
         var canvas = document.getElementById("canvas");
-        var width = document.body.clientWidth /2;
-        var height = document.body.clientHeight /2;
+        var width = document.body.clientWidth / 2;
+        var height = document.body.clientHeight / 2;
 
         camera = buildCamera(width, height);
 

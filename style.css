@@ -18,7 +18,9 @@ html,body {
     padding-top: 10px;
 
 }
-
+.name{
+    color:greenyellow;
+}
 .canvas {
     background-image: url("https://media.giphy.com/media/d2YVk2ZRuQuqvVlu/giphy.gif");
 
@@ -31,7 +33,7 @@ html,body {
 }
 
 .slider {
-    width: 25%%;
+    width: 25%;
     height: 1%;
     border-radius: 5px;
     background: yellow;

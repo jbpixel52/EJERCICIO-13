@@ -6,22 +6,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EJERCICIO 13</title>
+    <script type="text/javascript" src="./node_modules/dat.gui/build/dat.gui.min.js"></script>
 </head>
 
 <body>
-    <h1>EJERCICIO 13</h1>
+    <h1 class="name">EJERCICIO 13</h1>
     <script src="./node_modules/three/build/three.js"></script>
     <div class="slidecontainer">
         CARAS: 1<input type="range" min="1" max="100" value="50" class="slider" id="caras">100 <br>
-        ROTACION X: 1<input type="range" min="1" max="100" value="50" class="slider" id="rotacionx">100 <br>
-        ROTACION Y: 1<input type="range" min="1" max="100" value="50" class="slider" id="rotaciony">100 <br>
-        RADIO (LUZ): 1<input type="range" min="1" max="100" value="50" class="slider" id="radio">100 <br>
+
+        ROTACION X: 0<input type="range" min="0.00" max="1" value="0.0" class="slider" step=0.001 id="rotacionx">1 <br>
+
+        ROTACION Y: 0<input type="range" min="0.00" max="1" value="0" class="slider" step=0.001 id="rotaciony">1 <br>
+
+        RADIO (LUZ): 1<input type="range" min="1" max="100" value="0" class="slider" id="radio">100 <br>
 
 
         <div class="divcanvas"><canvas id="canvas"></canvas>
         </div>
         <script src="/script.js"></script>
-        
+
+
 </body>
 
 </html>
